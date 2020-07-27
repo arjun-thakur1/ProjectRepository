@@ -17,6 +17,7 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Employ
       public List<EmployeeEntity> findByEmployeePKCompanyIdAndEmployeePKDepartmentId(Long companyId,Long departmentId);
 
    public List<EmployeeEntity> findByEmployeePK(EmployeePK employeePK);
+    public List<EmployeeEntity> findByEmployeePKCompanyId(long companyId);
 
     public void deleteByEmployeePK(EmployeePK employeePK);
 

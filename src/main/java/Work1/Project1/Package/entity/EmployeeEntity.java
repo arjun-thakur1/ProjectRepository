@@ -1,7 +1,5 @@
 package Work1.Project1.Package.entity;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.redis.core.RedisHash;
 
 import javax.persistence.*;
@@ -10,6 +8,8 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table
+@AllArgsConstructor
+@NoArgsConstructor
 public class EmployeeEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,7 +25,7 @@ public class EmployeeEntity implements Serializable {
     private String phone;
 
     @Getter @Setter
-    @Column(name="salary")
+    @Column(name="salary",nullable = false)
     private Long salary;
 
 }

@@ -1,8 +1,8 @@
 package Work1.Project1.Package.controller;
 
-import Work1.Project1.Package.entity.DepartmentEntity;
-import Work1.Project1.Package.entity.DepartmentPK;
-import Work1.Project1.Package.entity.EmployeeEntity;
+import Work1.Project1.Package.entity.*;
+import Work1.Project1.Package.requestresponseobject.MyResponseEntity;
+import Work1.Project1.Package.requestresponseobject.RequestDepartmentEntity;
 import Work1.Project1.Package.services.DepartmentServices;
 import Work1.Project1.Package.services.EmployeeServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-import static Work1.Project1.Package.constants.ApplicationConstants.Add_Success;
 import static Work1.Project1.Package.constants.ApplicationConstants.Update_Success;
 
 @RestController
@@ -25,13 +24,22 @@ public class DepartmentController {
     private EmployeeServices employeeServices;
 
     @GetMapping("/all")
-    public List<DepartmentEntity> getAllDepartmentsDetail() {
-        return departmentService.getAllDetails();
+    public Object getAllDepartmentsDetail() {
+
+         Object departmentEntities = departmentService.getAllDetails();
+        if(departmentEntities==null)
+        {
+            MyResponseEntity myResponseEntity =new MyResponseEntity(200 , "No content!!");
+            return  myResponseEntity ;
+        }
+        else {
+            return departmentEntities;
+        }
     }
 
-    @RequestMapping(value = "/id", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Optional<DepartmentEntity> getDepartmentDetails(@RequestParam("departmentId") Long departmentId,
-                                                           @RequestParam("companyId") Long companyId) {
+    @RequestMapping(value = "/company-id/{companyId}/department-id/{departmentId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Object getDepartmentDetails(@PathVariable("departmentId") Long departmentId,
+                                       @PathVariable("companyId") Long companyId){
 
         return departmentService.getDepartmentDetail(departmentId, companyId);
     }
@@ -43,25 +51,24 @@ public class DepartmentController {
     }
 
     @DeleteMapping("")
-    public String deleteDepartment(@RequestParam("departmentId") Long departmentId,
+    public Object deleteDepartment(@RequestParam("departmentId") Long departmentId,
                                  @RequestParam("companyId") Long companyId) throws Exception {
-        DepartmentPK departmentPK = new DepartmentPK(departmentId, companyId);
-        departmentService.deleteDepartmentDetails(departmentPK);
-        return "Deleted successfully";
+        DepartmentPK departmentPK = new DepartmentPK(companyId,departmentId);
+        return departmentService.deleteDepartmentDetails(departmentPK);
+
     }
 
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String addDepartmentDetails(@RequestBody DepartmentEntity departmentEntity) {
+    public String addDepartmentDetails(@RequestBody RequestDepartmentEntity requestDepartmentEntity) {
 
-       return departmentService.addDepartment(departmentEntity);
+       return departmentService.addDepartment(requestDepartmentEntity);
     }
 
 
     @RequestMapping(value = "/update-details", method = RequestMethod.PUT)
-    public String updateDepartmentDetails(@RequestBody DepartmentEntity departmentEntity) {
+    public MyResponseEntity updateDepartmentDetails(@RequestBody RequestDepartmentEntity departmentEntity) {
 
-        departmentService.updateDetails(departmentEntity);
-       return Update_Success;
+        return  departmentService.updateDetails(departmentEntity);
     }
 
 

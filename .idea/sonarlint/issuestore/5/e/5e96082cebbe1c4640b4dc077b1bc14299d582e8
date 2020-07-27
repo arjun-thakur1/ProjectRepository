@@ -1,0 +1,10 @@
+
+c
+java:S4488("HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¦ü³´ûÿÿÿÿ
+ƒ
+java:S1488 "hImmediately return this expression instead of assigning it to the temporary variable "myResponseEntity".(ÁÄé’úÿÿÿÿ
+c
+java:S4488D"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(°™ª©üÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(™§ÅÁüÿÿÿÿ
+|
+java:S1128"aRemove this unused import 'Work1.Project1.Package.constants.ApplicationConstants.Update_Success'.(êÄÛÈùÿÿÿÿ

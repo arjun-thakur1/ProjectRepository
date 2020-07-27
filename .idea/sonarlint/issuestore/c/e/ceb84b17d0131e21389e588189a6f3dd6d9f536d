@@ -1,0 +1,15 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¼ú²Ëþÿÿÿÿ
+S	java:S106P"9Replace this use of System.out or System.err by a logger.(¨¶ÑÍþÿÿÿÿ
+ƒ
+java:S1488G"hImmediately return this expression instead of assigning it to the temporary variable "myResponseEntity".(¯•üàùÿÿÿÿ
+f	java:S117C"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ì‰È·
+R
+java:S3655["<Call "companyEntity.isPresent()" before accessing the value.(„‘è¯
+~
+java:S1488Q"hImmediately return this expression instead of assigning it to the temporary variable "myResponseEntity".(„£Ì„
+ƒ
+java:S1488"hImmediately return this expression instead of assigning it to the temporary variable "myResponseEntity".(ÁÄé’úÿÿÿÿ
+ƒ
+java:S1488L"hImmediately return this expression instead of assigning it to the temporary variable "myResponseEntity".(ñ½ˆ¦ùÿÿÿÿ
+Q	java:S125y"<This block of commented-out lines of code should be removed.(úìÊ 

@@ -13,9 +13,11 @@ public class EmployeePK implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Getter @Setter private Long employeeId;
-    @Getter @Setter private Long departmentId;
     @Getter @Setter private Long companyId;
+    @Getter @Setter private Long departmentId;
+    @Getter @Setter private Long employeeId;
+
+
 
 
 }

@@ -1,0 +1,18 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¼ú²Ëþÿÿÿÿ
+ƒ
+java:S1488["hImmediately return this expression instead of assigning it to the temporary variable "myResponseEntity".(¯•üàùÿÿÿÿ
+E
+java:S1611)"/Remove the parentheses around the "l" parameter(§‚àÌ
+ƒ
+java:S1488|"hImmediately return this expression instead of assigning it to the temporary variable "myResponseEntity".(øË¯™ûÿÿÿÿ
+t
+java:S2293'"YReplace the type specification in this constructor call with the diamond operator ("<>").(ƒ‚Þ¿øÿÿÿÿ
+‡
+java:S1130W"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ÿË¿µüÿÿÿÿ
+ƒ
+java:S1488`"hImmediately return this expression instead of assigning it to the temporary variable "myResponseEntity".(ñ½ˆ¦ùÿÿÿÿ
+`	java:S112W"FDefine and throw a dedicated exception instead of using a generic one.(ÿË¿µüÿÿÿÿ
+Q	java:S125Z"<This block of commented-out lines of code should be removed.(îå´á
+ƒ
+java:S1488w"hImmediately return this expression instead of assigning it to the temporary variable "myResponseEntity".(ñ½ˆ¦ùÿÿÿÿ

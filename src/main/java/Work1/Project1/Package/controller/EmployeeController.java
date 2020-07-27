@@ -3,16 +3,16 @@ package Work1.Project1.Package.controller;
 
 import Work1.Project1.Package.entity.EmployeeEntity;
 import Work1.Project1.Package.entity.EmployeePK;
+import Work1.Project1.Package.requestresponseobject.MyResponseEntity;
+import Work1.Project1.Package.requestresponseobject.RequestEmployeeEntity;
 import Work1.Project1.Package.services.EmployeeServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static Work1.Project1.Package.constants.ApplicationConstants.Not_Present;
 
 @RestController
 @RequestMapping("/employee")
@@ -21,28 +21,37 @@ public class EmployeeController {
     @Autowired
     private EmployeeServices employeeService;
 
-    @GetMapping("/all")
-    public List<EmployeeEntity> getAllEmployeesDetail() {
-        return employeeService.getAllDetails();
-    }
-
     @GetMapping("")
-    public List<EmployeeEntity> getEmployeesDetail(@RequestBody EmployeePK employeePK) {
+    public Object getAllEmployeesDetail(@RequestParam(defaultValue = "0") Integer pageNo,
+                                        @RequestParam(defaultValue = "2") Integer pageSize) {
 
-        return employeeService.getEmployeeDetails(employeePK);
+        return employeeService.getAllDetails(pageNo,pageSize);
     }
 
-    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String addEmployeeDetails(@RequestBody EmployeeEntity employeeEntity) {
+    @GetMapping("/one")
+    public Object getEmployeeDetail(@RequestBody EmployeePK employeePK) {
 
-        return employeeService.addEmployee(employeeEntity);
+        Object empObject= employeeService.getEmployeeDetails(employeePK);
+        if(empObject==null){
+            MyResponseEntity myResponseEntity =new MyResponseEntity(200 , Not_Present);
+            return  myResponseEntity ;
+        }
+        else{
+            return empObject;
+        }
     }
 
-    @DeleteMapping("/delete")
+    @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String addEmployeeDetails(@RequestBody RequestEmployeeEntity requestEmployeeEntity ){//  EmployeeEntity employeeEntity) {
+
+        return employeeService.addEmployee(requestEmployeeEntity);
+    }
+
+    @DeleteMapping("")
     public String deleteEmployee(@RequestParam("employeeId") Long employeeId,
                                  @RequestParam("departmentId") Long departmentId,
                                  @RequestParam("companyId") Long companyId) throws Exception {
-        EmployeePK employeePK = new EmployeePK(employeeId, departmentId, companyId);
+        EmployeePK employeePK = new EmployeePK( companyId,departmentId,employeeId);
         return employeeService.deleteEmployeeDetails(employeePK);
 
     }

@@ -1,6 +1,6 @@
 package Work1.Project1.Package.configuration;
 
-import Work1.Project1.Package.entity.EmployeeEntity;
+import Work1.Project1.Package.requestresponseobject.RequestEmployeeEntity;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;
@@ -14,30 +14,29 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 import java.util.HashMap;
 import java.util.Map;
 
-//@EnableKafka
-//@Configuration
+@EnableKafka
+@Configuration
 public class KafkaConfiguration {
 
-/*
-
-@Bean
-public ConsumerFactory<String, EmployeeEntity> userConsumerFactory() {
-    Map<String , Object> config = new HashMap<>();
-
-    config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
-    config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_id");
-    config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);//ErrorHandlingDeserializer
-    config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-    return new DefaultKafkaConsumerFactory<>(config, new JsonDeserializer(),
-            new JsonDeserializer<>(EmployeeEntity.class));
-}
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String , EmployeeEntity> userKafkaListenerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, EmployeeEntity> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(userConsumerFactory());
+    public ConsumerFactory<? super String, ? super RequestEmployeeEntity> requestEmployeeEntityConsumerFactory() {
+        Map<String, Object> config = new HashMap<>();
+
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_id");
+        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+        return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(),
+                new JsonDeserializer<>(RequestEmployeeEntity.class));
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, RequestEmployeeEntity> employeeEntityKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, RequestEmployeeEntity> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(requestEmployeeEntityConsumerFactory());
         return factory;
     }
 
- */
+
 }
