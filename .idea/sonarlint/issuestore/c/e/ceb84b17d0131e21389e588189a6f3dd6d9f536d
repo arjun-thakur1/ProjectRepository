@@ -1,15 +1,32 @@
 
+i
+java:S39735"GUse indentation to denote the code conditionally executed by this "if".(‰·’üøÿÿÿÿ8¶ëœ‰¹.
+r	java:S117_"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ááè‰úÿÿÿÿ8”êòù¸.
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¼ú²Ëþÿÿÿÿ
-S	java:S106P"9Replace this use of System.out or System.err by a logger.(¨¶ÑÍþÿÿÿÿ
 ƒ
-java:S1488G"hImmediately return this expression instead of assigning it to the temporary variable "myResponseEntity".(¯•üàùÿÿÿÿ
-f	java:S117C"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ì‰È·
-R
-java:S3655["<Call "companyEntity.isPresent()" before accessing the value.(„‘è¯
-~
-java:S1488Q"hImmediately return this expression instead of assigning it to the temporary variable "myResponseEntity".(„£Ì„
+java:S1488•"eImmediately return this expression instead of assigning it to the temporary variable "responseError".(´Ã°”8ð“Ëˆ¹.
+‡
+java:S1488r"eImmediately return this expression instead of assigning it to the temporary variable "responseError".(Ø£»ìúÿÿÿÿ8”êòù¸.
+‚
+java:S1488ˆ"eImmediately return this expression instead of assigning it to the temporary variable "responseError".(™³÷?8‚®ôú¸.
+®
+java:S1130x"‹Remove the declaration of thrown exception 'Work1.Project1.Package.exception.NotFoundException', as it cannot be thrown from method's body.(ÕÐêúÿÿÿÿ8µŸƒþ¸.
 ƒ
-java:S1488"hImmediately return this expression instead of assigning it to the temporary variable "myResponseEntity".(ÁÄé’úÿÿÿÿ
-ƒ
-java:S1488L"hImmediately return this expression instead of assigning it to the temporary variable "myResponseEntity".(ñ½ˆ¦ùÿÿÿÿ
-Q	java:S125y"<This block of commented-out lines of code should be removed.(úìÊ 
+java:S1488›"eImmediately return this expression instead of assigning it to the temporary variable "responseError".(¶•8÷ËÎˆ¹.
+Q
+java:S1611f"/Remove the parentheses around the "d" parameter(ÄµÛÁúÿÿÿÿ8Â“ðˆ¹.
+‚
+java:S1488n"eImmediately return this expression instead of assigning it to the temporary variable "responseError".(œÖ–8”êòù¸.
+ˆ
+java:S1488‹"eImmediately return this expression instead of assigning it to the temporary variable "responseError".(•˜’‚ùÿÿÿÿ8²ûñú¸.
+®
+java:S1130$"‹Remove the declaration of thrown exception 'Work1.Project1.Package.exception.NotFoundException', as it cannot be thrown from method's body.(¯þøëùÿÿÿÿ8çÄý¸.
+W	java:S1253"<This block of commented-out lines of code should be removed.(‚žÇ[8©‘ þ¸.
+]	java:S125T"<This block of commented-out lines of code should be removed.(¼¿Ëˆøÿÿÿÿ8îË½ü¸.
+‡
+java:S1488)"eImmediately return this expression instead of assigning it to the temporary variable "responseError".(üŽñ ýÿÿÿÿ8¨ÔÄý¸.
+ˆ
+java:S1488…"eImmediately return this expression instead of assigning it to the temporary variable "responseError".(•˜’‚ùÿÿÿÿ8®åóú¸.
+©
+java:S26817"†This line will not be executed conditionally; only the first line of this 2-line block will be. The rest will execute unconditionally.(¦áõ¸ýÿÿÿÿ8Ùª‰¹.
+]	java:S125K"<This block of commented-out lines of code should be removed.(ÁŽƒ úÿÿÿÿ8ª€Àü¸.

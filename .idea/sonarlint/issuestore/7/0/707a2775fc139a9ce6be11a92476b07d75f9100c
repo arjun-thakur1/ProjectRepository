@@ -1,15 +1,15 @@
 
-V	java:S125,"<This block of commented-out lines of code should be removed.(—ÖÙÿÿÿÿÿ
 1
-java:S3626J"Remove this redundant jump.(ûÁİ…
-Š
-java:S1488#"hImmediately return this expression instead of assigning it to the temporary variable "myResponseEntity".(ĞÕ¢şÿÿÿÿ8ô´Œß¸.
+java:S3626I"Remove this redundant jump.(ûÁİ…
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(™§ÅÁüÿÿÿÿ
-1
-java:S3626O"Remove this redundant jump.(ûÁİ…
+V	java:S125+"<This block of commented-out lines of code should be removed.(ó¢üıÿÿÿÿ
 [
-java:S4684<"@Replace this persistent entity with a simple POJO or DTO object.(ŸçÒñıÿÿÿÿ
+java:S4684;"@Replace this persistent entity with a simple POJO or DTO object.(ŸçÒñıÿÿÿÿ
 c
-java:S4488;"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(°™ª©üÿÿÿÿ
+java:S4488:"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(°™ª©üÿÿÿÿ
+1
+java:S3626N"Remove this redundant jump.(ûÁİ…
+‡
+java:S1488""eImmediately return this expression instead of assigning it to the temporary variable "responseError".(ÅûÒÔùÿÿÿÿ8ŸÒ‹õ¸.
 ^
-java:S4488A"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(šÅ¬²
+java:S4488@"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(šÅ¬²

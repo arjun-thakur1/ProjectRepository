@@ -18,4 +18,5 @@ public class ApplicationConstants {
     public static final String Duplicate_Id_Error="Error !!";
     public static final String Duplicate_Name_Error="Error :: Company Name Already Present!!";
     public static final String Company_ID ="Your company Id is :";
+
 }

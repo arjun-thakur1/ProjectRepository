@@ -28,4 +28,12 @@ public class EmployeeEntity implements Serializable {
     @Column(name="salary",nullable = false)
     private Long salary;
 
+    @Getter @Setter
+    @Column(name="is_active")
+    private boolean isActive;
+
+   // @Getter @Setter
+    //@Column(name="manager_id")
+    //private long managerId;
+
 }

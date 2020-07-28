@@ -1,13 +1,7 @@
 
-ƒ
-java:S1488D"hImmediately return this expression instead of assigning it to the temporary variable "myResponseEntity".(–üË§ÿÿÿÿÿ
-t
-java:S1128"^Remove this unused import 'org.springframework.kafka.support.serializer.DelegatingSerializer'.(ÐÄØÖ
-ƒ
-java:S1488?"hImmediately return this expression instead of assigning it to the temporary variable "myResponseEntity".(´ê§§ûÿÿÿÿ
-Q	java:S1250"<This block of commented-out lines of code should be removed.(Ú ¦¬
-ƒ
-java:S1488""hImmediately return this expression instead of assigning it to the temporary variable "myResponseEntity".(ÐÕ¢þÿÿÿÿ
-V
-java:S46840"@Replace this persistent entity with a simple POJO or DTO object.(Ú ¦¬
+®
+java:S11306"‹Remove the declaration of thrown exception 'Work1.Project1.Package.exception.NotFoundException', as it cannot be thrown from method's body.(ô¶¿Îýÿÿÿÿ8Ê€Âˆ¹.
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(™§ÅÁüÿÿÿÿ
+[
+java:S4684*"@Replace this persistent entity with a simple POJO or DTO object.(õ¨¸²úÿÿÿÿ
+V	java:S125*"<This block of commented-out lines of code should be removed.(õ¨¸²úÿÿÿÿ

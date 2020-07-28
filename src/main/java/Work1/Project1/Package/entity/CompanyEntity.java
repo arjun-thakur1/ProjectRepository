@@ -1,8 +1,6 @@
 package Work1.Project1.Package.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -20,19 +18,25 @@ public class CompanyEntity {
     private Long  companyId;
 
     @Column(name="company_name")
-
     private String companyName;
+
     @Column(name="ceo_name")
     private String ceoName;
 
+    @Getter @Setter
+    @Column(name="is_active")
+     private boolean isActive;
+
+    public boolean getIsActive()
+    {
+        return this.isActive;
+    }
 
 
-
-
-    public CompanyEntity(String companyName, String ceoName) {
+    public CompanyEntity(String companyName, String ceoName, boolean isActive) {
         this.companyName = companyName;
         this.ceoName = ceoName;
-
+        this.isActive = isActive;
     }
 
 

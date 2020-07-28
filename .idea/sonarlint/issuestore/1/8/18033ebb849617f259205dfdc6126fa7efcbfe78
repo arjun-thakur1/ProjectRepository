@@ -1,41 +1,34 @@
 
-Z
-java:S3655."=Call "employeeEntity.isPresent()" before accessing the value.(ù›”ò8â«³ß¸.
-i
-java:S1128"TRemove this unused import 'org.springframework.dao.DataIntegrityViolationException'.(ÅÔº(
-X
-java:S1128"=Remove this unused import 'java.util.NoSuchElementException'.(®“ÿéúÿÿÿÿ
-T
-java:S1128	">Remove this unused import 'org.postgresql.util.PSQLException'.(—–×
-s
-java:S1128"XRemove this unused import 'org.springframework.transaction.UnexpectedRollbackException'.(ÛãŠĞûÿÿÿÿ
+v
+java:S2293="YReplace the type specification in this constructor call with the diamond operator ("<>").(¢˜şæ8âíêã¸.
+M
+java:S1611Ù"/Remove the parentheses around the "l" parameter(ÂÏ¦¿8Ùò™â¸.
+M
+java:S1611ì"/Remove the parentheses around the "l" parameter(ÂÏ¦¿8Ùò™â¸.
+V	java:S106¢"9Replace this use of System.out or System.err by a logger.(“¬¾Â8Ùò™â¸.
+b	java:S112x"FDefine and throw a dedicated exception instead of using a generic one.(Æ¹Ë—8Ùò™â¸.
+^	java:S125Ï"<This block of commented-out lines of code should be removed.(ÆŸ´ûÿÿÿÿ8Ùò™â¸.
+X	java:S125/"<This block of commented-out lines of code should be removed.(Ø†ì™8á¦êã¸.
+]	java:S125`"<This block of commented-out lines of code should be removed.(ªÿ”êüÿÿÿÿ8Ùò™â¸.
+K
+java:S1611>"/Remove the parentheses around the "c" parameter(œôT8âíêã¸.
+M
+java:S1611â"/Remove the parentheses around the "l" parameter(ÂÏ¦¿8Ùò™â¸.
+M
+java:S1611ö"/Remove the parentheses around the "l" parameter(ÂÏ¦¿8Ùò™â¸.
+L
+java:S1611A"/Remove the parentheses around the "d" parameter(äÜøÏ8âíêã¸.
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¼ú²Ëşÿÿÿÿ
-b	java:S112T"FDefine and throw a dedicated exception instead of using a generic one.(Æ¹Ë—8ëÜùß¸.
-W
-java:S1141>"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ëÜùß¸.
-W
-java:S1141E"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ëÜùß¸.
-‹
-java:S1488/"nImmediately return this expression instead of assigning it to the temporary variable "responseEmployeeEntity".(×ƒƒÿ8ëÜùß¸.
-Z	java:S106N"9Replace this use of System.out or System.err by a logger.(¨¶ÑÍşÿÿÿÿ8ëÜùß¸.
-‰
-java:S1130T"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(Æ¹Ë—8ëÜùß¸.
-U	java:S106{"9Replace this use of System.out or System.err by a logger.(“¬¾Â8ëÜùß¸.
 M
-java:S1611"/Remove the parentheses around the "l" parameter(ÂÏ¦¿8ëÜùß¸.
+java:S1611Ä"/Remove the parentheses around the "l" parameter(ÂÏ¦¿8Ùò™â¸.
+X	java:S125"<This block of commented-out lines of code should be removed.(†Ş¿ı8é¯ş‡¹.
+M
+java:S1611Î"/Remove the parentheses around the "l" parameter(ÂÏ¦¿8Ùò™â¸.
 ?
-java:S1116¦"Remove this empty statement.(Åñ­õşÿÿÿÿ8ëÜùß¸.
-M
-java:S1611§"/Remove the parentheses around the "l" parameter(ÂÏ¦¿8ëÜùß¸.
-M
-java:S1611²"/Remove the parentheses around the "l" parameter(ÂÏ¦¿8ëÜùß¸.
-M
-java:S1611»"/Remove the parentheses around the "l" parameter(ÂÏ¦¿8ëÜùß¸.
+java:S1116ë"Remove this empty statement.(Åñ­õşÿÿÿÿ8Ùò™â¸.
 ?
-java:S1116Ä"Remove this empty statement.(Åñ­õşÿÿÿÿ8ëÜùß¸.
-M
-java:S1611Å"/Remove the parentheses around the "l" parameter(ÂÏ¦¿8ëÜùß¸.
-M
-java:S1611Ï"/Remove the parentheses around the "l" parameter(ÂÏ¦¿8ëÜùß¸.
-]	java:S125:"<This block of commented-out lines of code should be removed.(Ü‰Ñşÿÿÿÿ8ëÜùß¸.
-^	java:S125¨"<This block of commented-out lines of code should be removed.(ÆŸ´ûÿÿÿÿ8ëÜùß¸.
+java:S1116Í"Remove this empty statement.(Åñ­õşÿÿÿÿ8Ùò™â¸.
+Z
+java:S3655Q"=Call "employeeEntity.isPresent()" before accessing the value.(ù›”ò8Ùò™â¸.
+v
+java:S2293@"YReplace the type specification in this constructor call with the diamond operator ("<>").(Õ¡Ê8âíêã¸.

@@ -6,10 +6,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository   //so that this is scanned during classpath
 public interface CompanyRepository extends JpaRepository<CompanyEntity, Long> {
     boolean existsByCompanyName(String companyName);
+    CompanyEntity findByCompanyIdAndIsActive(long companyId,boolean isActive);
 
-    // @Query(value="SELECT m FROM CompanyRepository m WHERE m.companyName=1? AND m.companyId!=:2?" , nativeQuery )
-    //boolean existsByCompanyName(String companyName , long companyId); //, @Param("companyId'") @Param("companyName")
+    List<CompanyEntity> findAllByIsActive(boolean isActive);
+
+    CompanyEntity findByCompanyName(String companyName);
 }

@@ -1,5 +1,5 @@
 package Work1.Project1.Package.services;
-import Work1.Project1.Package.requestresponseobject.RequestEmployeeEntity;
+import Work1.Project1.Package.request.RequestEmployee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -12,9 +12,9 @@ public class KafkaConsumer {
     EmployeeServices employeeServices;
 
     @KafkaListener(topics = "testTopic",  groupId="group_id",containerFactory = "employeeEntityKafkaListenerContainerFactory")
-    public void consumeJson(RequestEmployeeEntity requestEmployeeEntity) {
+    public void consumeJson(RequestEmployee requestEmployee) {
 
-        employeeServices.addEmployee(requestEmployeeEntity);
+        employeeServices.addEmployee(requestEmployee);
     }
 
 }

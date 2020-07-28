@@ -14,13 +14,15 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Employ
     public List<EmployeeEntity> findAllByEmployeePKCompanyId(Long companyId);
 
     //@Query("select me from EmployeeEntity me where me.EmployeePK.CompanyId = ?1 AND me.EmployeePK.DepartmentId=?2")
-      public List<EmployeeEntity> findByEmployeePKCompanyIdAndEmployeePKDepartmentId(Long companyId,Long departmentId);
+      public List<EmployeeEntity> findByEmployeePKCompanyIdAndEmployeePKDepartmentIdAndIsActive(Long companyId,Long departmentId,boolean isActive);
 
    public List<EmployeeEntity> findByEmployeePK(EmployeePK employeePK);
     public List<EmployeeEntity> findByEmployeePKCompanyId(long companyId);
 
     public void deleteByEmployeePK(EmployeePK employeePK);
 
+    EmployeeEntity findByEmployeePKAndIsActive(EmployeePK employeePK,boolean isActive);
+    long countByEmployeePKCompanyIdAndEmployeePKDepartmentId(Long companyId, Long departmentId);
 
-
+    List<EmployeeEntity> findByEmployeePKCompanyIdAndEmployeePKDepartmentId(Long companyId, Long departmentId);
 }

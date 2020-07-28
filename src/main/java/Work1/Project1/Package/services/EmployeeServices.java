@@ -4,28 +4,23 @@ import Work1.Project1.Package.converter.EmployeeEntityListToResponseEmpList;
 import Work1.Project1.Package.entity.*;
 import Work1.Project1.Package.repository.CompanyRepository;
 import Work1.Project1.Package.repository.DepartmentRepository;
-import Work1.Project1.Package.requestresponseobject.RequestEmployeeEntity;
+import Work1.Project1.Package.response.ResponseEmployee;
+import Work1.Project1.Package.request.RequestEmployee;
 import Work1.Project1.Package.repository.EmployeeRepository;
-import Work1.Project1.Package.requestresponseobject.ResponseDepartmentEntity;
-import Work1.Project1.Package.requestresponseobject.ResponseEmployeeEntity;
-import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.UnexpectedRollbackException;
 
 import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static Work1.Project1.Package.constants.ApplicationConstants.*;
@@ -63,13 +58,13 @@ public class EmployeeServices  {
                 } );
 */
         Page<CompanyEntity> allCompanyEntity= companyRepository.findAll(paging);
-        HashMap<Long,HashMap <Long,List<ResponseEmployeeEntity>>> companyToDeptToEmpMapp= new HashMap<Long,HashMap<Long,List<ResponseEmployeeEntity>>>();  //l.getCompanyId()>
+        HashMap<Long,HashMap <Long,List<ResponseEmployee>>> companyToDeptToEmpMapp= new HashMap<Long,HashMap<Long,List<ResponseEmployee>>>();  //l.getCompanyId()>
         allCompanyEntity.forEach((c)->{
             List<DepartmentEntity> allDepartmentEntities= departmentRepository.findAllByDepartmentPKCompanyId(c.getCompanyId());
-            HashMap <Long,List<ResponseEmployeeEntity>> deptToEmployeemap=new HashMap<Long,List<ResponseEmployeeEntity>>();
+            HashMap <Long,List<ResponseEmployee>> deptToEmployeemap=new HashMap<Long,List<ResponseEmployee>>();
             allDepartmentEntities.forEach((d)-> {
                 List<EmployeeEntity> employeeEntities = employeeRepository.findByEmployeePKCompanyIdAndEmployeePKDepartmentId(c.getCompanyId(), d.getDepartmentPK().getDepartmentId());
-                List<ResponseEmployeeEntity> responseEmployeeEntities = employeeEntityListToResponseEmpList.convert(employeeEntities);
+                List<ResponseEmployee> responseEmployeeEntities = employeeEntityListToResponseEmpList.convert(employeeEntities);
                 deptToEmployeemap.put(d.departmentPK.getDepartmentId(), responseEmployeeEntities);
             });
             companyToDeptToEmpMapp.put(c.getCompanyId(),deptToEmployeemap);
@@ -81,10 +76,11 @@ public class EmployeeServices  {
 
     @Cacheable(value = "employee_cache")
     public Object getEmployeeDetails(EmployeePK employeePK) {
-        if(employeeRepository.existsById(employeePK)) {
-            Optional<EmployeeEntity> employeeEntity= employeeRepository.findById(employeePK);    //HttpStatus.OK
+
+            Optional<EmployeeEntity> employeeEntity= Optional.ofNullable(employeeRepository.findByEmployeePKAndIsActive(employeePK, true));    //HttpStatus.OK
+           if(employeeEntity.isPresent()){
             EmployeeEntity employeeEntity1= employeeEntity.get();
-            return( new ResponseEmployeeEntity(employeeEntity1.getEmployeePK().getCompanyId(),employeeEntity1.getEmployeePK().getDepartmentId(),
+            return( new ResponseEmployee(employeeEntity1.getEmployeePK().getCompanyId(),employeeEntity1.getEmployeePK().getDepartmentId(),
                     employeeEntity1.getEmployeePK().getEmployeeId(),employeeEntity1.getEmpName(),employeeEntity1.getPhone(),employeeEntity1.getSalary()) );
        }
         else {
@@ -92,10 +88,14 @@ public class EmployeeServices  {
         }
 }
 
-    public String addEmployee(RequestEmployeeEntity requestEmployeeEntity) {
-        try {
-            EmployeePK employeePK =  new EmployeePK(requestEmployeeEntity.getCompanyId(),requestEmployeeEntity.getDepartmentId(),requestEmployeeEntity.getEmployeeId());//employeeEntity.getEmployeePK();
-            EmployeeEntity employeeEntity=new EmployeeEntity(employeePK,requestEmployeeEntity.getEmpName(),requestEmployeeEntity.getPhone(),requestEmployeeEntity.getSalary());
+    public String addEmployee(RequestEmployee requestEmployee) {
+        long companyId=requestEmployee.getCompanyId();
+        long departmentId=requestEmployee.getDepartmentId();
+        DepartmentPK departmentPK=new DepartmentPK(companyId,departmentId);
+        if(departmentRepository.existsById(departmentPK)){
+            long employeeId= employeeRepository.countByEmployeePKCompanyIdAndEmployeePKDepartmentId(companyId,departmentId);
+            EmployeePK employeePK =  new EmployeePK(companyId, departmentId, employeeId);//employeeEntity.getEmployeePK();
+            EmployeeEntity employeeEntity=new EmployeeEntity(employeePK, requestEmployee.getEmpName(), requestEmployee.getPhone(), requestEmployee.getSalary(),true);
            // DepartmentPK departmentPK=new DepartmentPK(requestEmployeeEntity.getCompanyId(),)
            if (!employeeRepository.existsById(employeePK)) {
                 try {
@@ -105,7 +105,7 @@ public class EmployeeServices  {
                   return Add_Failed;
                 }
             }else {
-               try {
+            try{
                    this.updateDetails(employeeEntity);
                    return Update_Success;
                }
@@ -113,36 +113,37 @@ public class EmployeeServices  {
                       return Add_Failed;
                    }
             }
-        } catch (RuntimeException e) {
-            System.out.println(e);
-            return Add_Failed;
         }
+        return Add_Failed;
     }
 
     @CacheEvict(value = "employee_cache", allEntries = true)
     public String deleteEmployeeDetails(EmployeePK employeePK) throws Exception {
-        if(employeeRepository.existsById(employeePK)){
-            try {
-                this.employeeRepository.deleteByEmployeePK(employeePK);
-                return Delete_Success;
+         try {
+                Optional<EmployeeEntity> employeeEntity= Optional.ofNullable(employeeRepository.findByEmployeePKAndIsActive(employeePK, true));
+                if(employeeEntity.isPresent()) {
+                    EmployeeEntity employeeEntity1 = employeeEntity.get();
+                    employeeEntity1.setActive(false);
+                    employeeRepository.save(employeeEntity1);
+                    //this.employeeRepository.deleteByEmployeePK(employeePK);
+                    return Delete_Success;
+                }
             }catch(Exception e)
             {
                 return Failed;
             }
-        } else{
-            return Failed;
-        }
+        return Failed;
     }
 
     public List<EmployeeEntity> getAllEmployeeOfDepartment(DepartmentPK departmentPK) {
         long companyId = departmentPK.getCompanyId();
         long departmentId = departmentPK.getDepartmentId();
-        return employeeRepository.findByEmployeePKCompanyIdAndEmployeePKDepartmentId(companyId, departmentId);
+        return employeeRepository.findByEmployeePKCompanyIdAndEmployeePKDepartmentIdAndIsActive(companyId, departmentId,true);
     }
 
     @CachePut(value = "employee_cache")
     public String updateDetails(EmployeeEntity updateemployeeEntity) {
-        Optional<EmployeeEntity> fetchedemployeeEntity = employeeRepository.findById(updateemployeeEntity.getEmployeePK());
+        Optional<EmployeeEntity> fetchedemployeeEntity = Optional.ofNullable(employeeRepository.findByEmployeePKAndIsActive(updateemployeeEntity.getEmployeePK(), true));
         if (fetchedemployeeEntity.isPresent()) {
             EmployeeEntity employeeEntity = fetchedemployeeEntity.get();
             if (updateemployeeEntity.getEmpName() == null) {

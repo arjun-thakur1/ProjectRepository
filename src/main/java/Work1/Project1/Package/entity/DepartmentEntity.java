@@ -22,7 +22,10 @@ public class DepartmentEntity implements Serializable {
     @Column(name="department_name")
     private String departmentName;
 
+    @Getter @Setter @Column(name="is_active")
+    private boolean isActive;
 
-
+    @Getter @Setter @Column(name="manager_id")
+    private long managerId;
 
 }

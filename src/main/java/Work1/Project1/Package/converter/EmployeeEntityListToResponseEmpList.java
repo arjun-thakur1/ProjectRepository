@@ -1,20 +1,18 @@
 package Work1.Project1.Package.converter;
 
-import Work1.Project1.Package.entity.DepartmentEntity;
 import Work1.Project1.Package.entity.EmployeeEntity;
-import Work1.Project1.Package.requestresponseobject.ResponseDepartmentEntity;
-import Work1.Project1.Package.requestresponseobject.ResponseEmployeeEntity;
+import Work1.Project1.Package.response.ResponseEmployee;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 @Service
 public class EmployeeEntityListToResponseEmpList {
-    public List<ResponseEmployeeEntity> convert(List<EmployeeEntity> employeeEntities)
+    public List<ResponseEmployee> convert(List<EmployeeEntity> employeeEntities)
     {
-        List<ResponseEmployeeEntity> responseEmployeeEntities = new ArrayList<ResponseEmployeeEntity>();
+        List<ResponseEmployee> responseEmployeeEntities = new ArrayList<ResponseEmployee>();
         employeeEntities.forEach((l)->{
-            responseEmployeeEntities.add(new ResponseEmployeeEntity(l.getEmployeePK().getCompanyId(),l.getEmployeePK().getDepartmentId(),
+            responseEmployeeEntities.add(new ResponseEmployee(l.getEmployeePK().getCompanyId(),l.getEmployeePK().getDepartmentId(),
                     l.getEmployeePK().getEmployeeId(), l.getEmpName(),l.getPhone(),l.getSalary())); });
 
         return responseEmployeeEntities;

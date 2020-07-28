@@ -3,14 +3,12 @@ package Work1.Project1.Package.controller;
 
 import Work1.Project1.Package.entity.EmployeeEntity;
 import Work1.Project1.Package.entity.EmployeePK;
-import Work1.Project1.Package.requestresponseobject.MyResponseEntity;
-import Work1.Project1.Package.requestresponseobject.RequestEmployeeEntity;
+import Work1.Project1.Package.request.RequestEmployee;
+import Work1.Project1.Package.response.ResponseError;
 import Work1.Project1.Package.services.EmployeeServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 import static Work1.Project1.Package.constants.ApplicationConstants.Not_Present;
 
@@ -33,8 +31,8 @@ public class EmployeeController {
 
         Object empObject= employeeService.getEmployeeDetails(employeePK);
         if(empObject==null){
-            MyResponseEntity myResponseEntity =new MyResponseEntity(200 , Not_Present);
-            return  myResponseEntity ;
+            ResponseError responseError =new ResponseError(200 , Not_Present);
+            return responseError;
         }
         else{
             return empObject;
@@ -42,9 +40,9 @@ public class EmployeeController {
     }
 
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String addEmployeeDetails(@RequestBody RequestEmployeeEntity requestEmployeeEntity ){//  EmployeeEntity employeeEntity) {
+    public String addEmployeeDetails(@RequestBody RequestEmployee requestEmployee){//  EmployeeEntity employeeEntity) {
 
-        return employeeService.addEmployee(requestEmployeeEntity);
+        return employeeService.addEmployee(requestEmployee);
     }
 
     @DeleteMapping("")
